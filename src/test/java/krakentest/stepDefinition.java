@@ -20,6 +20,7 @@ import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 
 import cucumber.api.java.en.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class stepDefinition {
 
@@ -32,14 +33,14 @@ public class stepDefinition {
 		logs.enable(LogType.BROWSER, Level.ALL);
 		if(browser.equalsIgnoreCase("Firefox"))
 		{			
-			System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
 			options.setCapability(CapabilityType.LOGGING_PREFS, logs); 
 			driver = new FirefoxDriver(options);
 		}
 		else if(browser.equalsIgnoreCase("Chrome"))
 		{
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 			driver = new ChromeDriver(options);
