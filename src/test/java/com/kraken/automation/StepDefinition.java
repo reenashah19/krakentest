@@ -1,4 +1,4 @@
-package krakentest;
+package com.kraken.automation;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -19,35 +19,33 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 
+import cucumber.api.java.After;
 import cucumber.api.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class stepDefinition {
+public class StepDefinition {
 
 	public WebDriver driver;
 	public List<LogEntry> logs;
 
 	@Given("^Setup browser \"([^\"]*)\"$")
-	public void browserSetup(String browser) {		
+	public void browserSetup(String browser) {
 		LoggingPreferences logs = new LoggingPreferences();
 		logs.enable(LogType.BROWSER, Level.ALL);
-		if(browser.equalsIgnoreCase("Firefox"))
-		{			
+		if (browser.equalsIgnoreCase("Firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
-			options.setCapability(CapabilityType.LOGGING_PREFS, logs); 
+			options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 			driver = new FirefoxDriver(options);
-		}
-		else if(browser.equalsIgnoreCase("Chrome"))
-		{
+		} else if (browser.equalsIgnoreCase("Chrome")) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability(CapabilityType.LOGGING_PREFS, logs);
 			driver = new ChromeDriver(options);
-		}			
+		}
 	}
 
-	@Given("^Navigate to the Page \"([^\"]*)\"$")
+	@When("^Navigate to the Page \"([^\"]*)\"$")
 	public void navigateToPage(String page) {
 		driver.manage().window().maximize();
 		driver.get(page);
@@ -56,14 +54,13 @@ public class stepDefinition {
 	@Then("^Verify console error on page$")
 	public void validateConsoleError() {
 		LogEntries logEntries = driver.manage().logs().get(LogType.BROWSER);
-		logs = logEntries.filter(Level.ALL);		
+		logs = logEntries.filter(Level.ALL);
 		if (logs.size() == 0)
 			System.out.println("No console errors exists in this page");
 		for (LogEntry logEntry : logs) {
 			System.out.println("Errors" + logEntry);
 			Assert.fail("Console errors exists in this page");
 		}
-		driver.quit();
 	}
 
 	@Then("^Verify response code \"([^\"]*)\" of the Page \"([^\"]*)\"$")
@@ -74,12 +71,10 @@ public class stepDefinition {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestProperty("User-Agent", "Chrome");
 			connection.setRequestMethod("GET");
-			Assert.assertEquals("Response Code is not as expected",code, connection.getResponseCode());
+			Assert.assertEquals("Response Code is not as expected", code, connection.getResponseCode());
 		} catch (Exception e) {
 			e.printStackTrace();
-			driver.quit();
 		}
-		driver.quit();
 	}
 
 	@Then("^Verify broken links of the Page \"([^\"]*)\"$")
@@ -101,8 +96,11 @@ public class stepDefinition {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			driver.quit();
 		}
+	}
+
+	@After
+	public void teardown() {
 		driver.quit();
 	}
 
