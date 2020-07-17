@@ -17,7 +17,7 @@ Framework Architecture
 		|	|_features
 		|	|	|_brokenlinks.feature
 		|	|	|_console_errors.feature
-    |	|	|_responsecode.feature
+    |	|	|	|	|_responsecode.feature
     | pom.xml
     | docker-compose
     
