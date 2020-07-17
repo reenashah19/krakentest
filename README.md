@@ -42,8 +42,7 @@ Technologies Used
 
 Running test
 --------------
-Checkout the project
-Go to your project directory from terminal and hit following commands
+Checkout the project and go to your project directory from terminal and hit following commands
 * docker-compose up -d (This command will create a hub on a container and also firefox and chrome nodes attached to the hub)
 * mvn test
 
