@@ -22,7 +22,7 @@ Framework Architecture
    		|	|	|_responsecode.feature
     	|pom.xml
     	|docker-compose.yml
-	|Dockerfile
+		|Dockerfile
     
 
 * **src/test/resources/features** - All the cucumber features files (files .feature ext) goes here.
