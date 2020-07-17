@@ -1,8 +1,6 @@
 package com.kraken.automation;
 
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,17 +28,18 @@ public class StepDefinition {
 	@Given("^Setup browser \"([^\"]*)\"$")
 	public void browserSetup(String browser) throws MalformedURLException {
 		LoggingPreferences logs = new LoggingPreferences();
+		String seleniumHubUrl = "http://localhost:4444/wd/hub";
 		logs.enable(LogType.BROWSER, Level.ALL);
 		if (browser.equalsIgnoreCase("Firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
 			options.setCapability(CapabilityType.LOGGING_PREFS, logs);
-			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+			driver = new RemoteWebDriver(new URL(seleniumHubUrl), options);
 		} else if (browser.equalsIgnoreCase("Chrome")) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability(CapabilityType.LOGGING_PREFS, logs);
-			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+			driver = new RemoteWebDriver(new URL(seleniumHubUrl), options);
 		}
 	}
 

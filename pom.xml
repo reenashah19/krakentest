@@ -66,8 +66,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
-					<parallel>methods</parallel>
-					<useUnlimitedThreads>true</useUnlimitedThreads>
 				</configuration>
 				<version>2.19.1</version>
 			</plugin>
