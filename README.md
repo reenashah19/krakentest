@@ -1,9 +1,9 @@
 # krakentest
-Kraken Test
+Kraken Test is the automation project to achieve the task given in the assignment.In this I have used Selenium Cucumber Maven project to achieve the objective
 
-Download a Framework
+Pre-requisite
 --------------
-* Maven - https://maven.apache.org/download.cgi
+* Docker latest - https://www.docker.com/
 
 Framework Architecture
 --------------
@@ -40,4 +40,11 @@ Running test
 --------------
 
 Go to your project directory from terminal and hit following commands
-* `mvn surefire-report:report`
+* docker-compose up -d (This command will create a hub on a container and also firefox and chrome nodes attached to the hub)
+* xxxx
+* xxxx
+
+Reports
+--------------
+
+A html report is generated in \target\cucumber-reports\index.html
