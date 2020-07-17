@@ -10,9 +10,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
@@ -20,7 +18,6 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import cucumber.api.java.After;
 import cucumber.api.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -38,16 +35,12 @@ public class StepDefinition {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions options = new FirefoxOptions();
 			options.setCapability(CapabilityType.LOGGING_PREFS, logs);
-			// driver = new RemoteWebDriver(new
-			// URL("http://localhost:4444/wd/hub"),options);
-			driver = new FirefoxDriver(options);
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
 		} else if (browser.equalsIgnoreCase("Chrome")) {
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability(CapabilityType.LOGGING_PREFS, logs);
-			// driver = new RemoteWebDriver(new
-			// URL("http://localhost:4444/wd/hub"),options);
-			driver = new ChromeDriver(options);
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
 		}
 	}
 
@@ -72,7 +65,6 @@ public class StepDefinition {
 	@Then("^Verify response code \"([^\"]*)\" of the Page \"([^\"]*)\"$")
 	public void validateResponsecode(int code, String page) throws Exception {
 		URL url;
-
 		url = new URL(page);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestProperty("User-Agent", "Chrome");
@@ -84,7 +76,6 @@ public class StepDefinition {
 	@Then("^Verify broken links of the Page \"([^\"]*)\"$")
 	public void validateBrokenLinks(String page) throws Exception {
 		URL url;
-
 		url = new URL(page);
 		driver.get(url.toString());
 		List<WebElement> links = driver.findElements(By.tagName("a"));
