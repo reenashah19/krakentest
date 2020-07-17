@@ -17,9 +17,9 @@ Framework Architecture
 		|	|_features
 		|	|	|_brokenlinks.feature
 		|	|	|_console_errors.feature
-    |	|	|	|	|_responsecode.feature
-    | pom.xml
-    | docker-compose
+   		|	|	|_responsecode.feature
+    		| pom.xml
+    		| docker-compose
     
 
 * **src/test/resources/features** - All the cucumber features files (files .feature ext) goes here.
