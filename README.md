@@ -47,7 +47,7 @@ Go to your project directory from terminal and hit following commands
 * docker-compose up -d (This command will create a hub on a container and also firefox and chrome nodes attached to the hub)
 * mvn test
 
-Note : I have created dockerfile and also added configurations in the docker-compose.yml file to execute the dockerfile. However in dockerfile i needed to give static IP address of the machine where it is running and moreover i was unable to add volume mount in the dockerfile as I am completely beginner when it comes to docker. To have a look please uncomment the commented lines in docker-compose.yml file and also update the IP address when initiating the driver in StepDefinition.java
+Note : I have created dockerfile and also added configurations in the docker-compose.yml file to execute the dockerfile. However in dockerfile i needed to give static IP address of the machine where it is running and moreover i was unable to add volume mount in the dockerfile as * I am completely beginner when it comes to docker.* To have a look please uncomment the commented lines in docker-compose.yml file and also update the IP address when initiating the driver in StepDefinition.java
 
 Execute below commands to run
 
