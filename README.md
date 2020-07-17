@@ -21,14 +21,16 @@ Framework Architecture
 		|	|	|_console_errors.feature
    		|	|	|_responsecode.feature
     	|pom.xml
-    	|docker-compose
+    	|docker-compose.yml
+	|Dockerfile
     
 
 * **src/test/resources/features** - All the cucumber features files (files .feature ext) goes here.
 * **src/test/java/com/kraken/automation/StepDefinition** - I have defined step defintion under this package for your feature steps.
 * **src/test/java/com/kraken/automation/TestRunner** - This file contains cucumber runner (TestRunner.java) where you can configure your glue code location (step defintions), define test result output format in html. 
 * **pom.xml** - Contains all dependencies and plugins
-* **docker-compose** - Contains steps to run project in a dockerized mode
+* **docker-compose.yml** - Contains steps to run project in a dockerized mode
+* **Dockerfile** - Contains steps to run project in a dockerized mode
 
 Technologies Used
 -----------------
@@ -40,7 +42,7 @@ Technologies Used
 
 Running test
 --------------
-
+Checkout the project
 Go to your project directory from terminal and hit following commands
 * docker-compose up -d (This command will create a hub on a container and also firefox and chrome nodes attached to the hub)
 * mvn test
